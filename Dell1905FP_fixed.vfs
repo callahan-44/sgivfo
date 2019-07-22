@@ -1,0 +1,73 @@
+/* 
+1280x1024 Format for a Dell 1905FP monitor using EDID information obtained from the monitor's firmware 
+*/ 
+
+General { 
+FormatName = "1280x1024_60_LCD"; 
+
+FieldsPerFrame          = 1; 
+FramesPerSecond         = 60.0; 
+TotalLinesPerFrame      = 1066; 
+TotalPixelsPerLine      = 1688; 
+ActiveLinesPerFrame     = 1024; 
+ActivePixelsPerLine     = 1280; 
+
+} 
+Active Line { 
+HorizontalBackPorch     = 248 pixels; 
+HorizontalSync          = 112 pixels; 
+HorizontalFrontPorch    = 48 pixels; 
+} 
+Field 
+{ 
+Vertical Sync = 
+{ 
+{ 
+Length = 1.0H; 
+Low = 0.0 usec; 
+} 
+repeat 2 
+{ 
+Length = 1.0H; 
+} 
+} 
+Initial Low; 
+Vertical Back Porch = 
+{ 
+{ 
+Length = 1.0H; 
+High = HorizontalSync; 
+} 
+repeat 37
+{ 
+Length = 1.0H; 
+Low = 0.0 usec; 
+High = HorizontalSync; 
+} 
+} 
+Initial High; 
+Active = 
+{ 
+repeat 1024 
+{ 
+Length = 1.0H; 
+Low = 0.0 usec; 
+High = HorizontalSync; 
+} 
+} 
+Vertical Front Porch = 
+{ 
+repeat 1 
+{ 
+Length = 1.0H; 
+Low = 0.0 usec; 
+High = HorizontalSync; 
+} 
+} 
+} 
+#if 0 
+postprocess 
+{ 
+dump edge; 
+} 
+#endif 

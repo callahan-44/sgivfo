@@ -1,0 +1,73 @@
+/* 
+1440x900 Format for a Dell E1909W monitor using EDID information obtained from the monitor's firmware 
+*/ 
+
+General { 
+FormatName = "1440x900_60"; 
+
+FieldsPerFrame          = 1; 
+FramesPerSecond         = 59.89; 
+TotalLinesPerFrame      = 934; 
+TotalPixelsPerLine      = 1904; 
+ActiveLinesPerFrame     = 900; 
+ActivePixelsPerLine     = 1440; 
+
+} 
+Active Line { 
+HorizontalBackPorch     = 232 pixels; 
+HorizontalSync          = 152 pixels; 
+HorizontalFrontPorch    = 80 pixels; 
+} 
+Field 
+{ 
+Vertical Sync = 
+{ 
+{ 
+Length = 1.0H; 
+Low = 0.0 usec; 
+} 
+repeat 5 
+{ 
+Length = 1.0H; 
+} 
+} 
+Initial Low; 
+Vertical Back Porch = 
+{ 
+{ 
+Length = 1.0H; 
+High = HorizontalSync; 
+} 
+repeat 24 
+{ 
+Length = 1.0H; 
+Low = 0.0 usec; 
+High = HorizontalSync; 
+} 
+} 
+Initial High; 
+Active = 
+{ 
+repeat 900 
+{ 
+Length = 1.0H; 
+Low = 0.0 usec; 
+High = HorizontalSync; 
+} 
+} 
+Vertical Front Porch = 
+{ 
+repeat 3
+{ 
+Length = 1.0H; 
+Low = 0.0 usec; 
+High = HorizontalSync; 
+} 
+} 
+} 
+#if 0 
+postprocess 
+{ 
+dump edge; 
+} 
+#endif 

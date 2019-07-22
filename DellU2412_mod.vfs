@@ -1,0 +1,73 @@
+/* 
+1920x1200 Format for a Dell U2410 monitor using EDID information obtained from the monitor's firmware 
+*/ 
+
+General { 
+FormatName = "1920x1200_60-U2412"; 
+
+FieldsPerFrame          = 1; 
+FramesPerSecond         = 59.5; 
+TotalLinesPerFrame      = 1235; 
+TotalPixelsPerLine      = 2136; 
+ActiveLinesPerFrame     = 1200; 
+ActivePixelsPerLine     = 1920; 
+
+} 
+Active Line { 
+HorizontalBackPorch     = 108 pixels; 
+HorizontalSync          = 42 pixels; 
+HorizontalFrontPorch    = 64 pixels; 
+} 
+Field 
+{ 
+Vertical Sync = 
+{ 
+{ 
+Length = 1.0H; 
+Low = 0.0 usec; 
+} 
+repeat 5 
+{ 
+Length = 1.0H; 
+} 
+} 
+Initial Low; 
+Vertical Back Porch = 
+{ 
+{ 
+Length = 1.0H; 
+High = HorizontalSync; 
+} 
+repeat 25 
+{ 
+Length = 1.0H; 
+Low = 0.0 usec; 
+High = HorizontalSync; 
+} 
+} 
+Initial High; 
+Active = 
+{ 
+repeat 1200 
+{ 
+Length = 1.0H; 
+Low = 0.0 usec; 
+High = HorizontalSync; 
+} 
+} 
+Vertical Front Porch = 
+{ 
+repeat 3 
+{ 
+Length = 1.0H; 
+Low = 0.0 usec; 
+High = HorizontalSync; 
+} 
+} 
+} 
+#if 0 
+postprocess 
+{ 
+dump edge; 
+} 
+#endif 
